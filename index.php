@@ -6,13 +6,16 @@ $password = "root";
 try {
 	$connection = new PDO("mysql:host=$servername;dbname=listspro", $username, $password);
 	$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	echo "Connection successfully";
+
+	$contactLists = 'SELECT first_name, last_name, address, city FROM contacts ORDER BY id ';
+	foreach($connection->query($contactLists) as $row) {
+		var_dump($row['first_name']);	
+	}
+
 } catch(PDOException $e) {
 	echo 'Connection failed ' . $e->getMessage();
 }
 ?>
-
-
 
 <!DOCTYPE html>
 <html>
